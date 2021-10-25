@@ -92,5 +92,11 @@ plt.show()
 
 # fcluster - identify the number of clusters
 fcluster(hc1, 80, criterion='distance')
+c1 = fcluster(hc1, 80, criterion='distance')
+cars['cluster1'] = c1
 
-
+# number of clusters we want
+# fcluster - identify the number of clusters
+c2 = fcluster(hc1, 80, criterion='distance')
+cars['cluster2'] = c2
+cars.head(3)
