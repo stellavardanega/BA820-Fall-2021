@@ -100,3 +100,10 @@ cars['cluster1'] = c1
 c2 = fcluster(hc1, 80, criterion='distance')
 cars['cluster2'] = c2
 cars.head(3)
+
+
+# setting up GBQ
+import pandas as pd
+SQL="select * from `questrom.datasets.mtcars`"
+PROJECT='ba820-fall21'
+df=pd.read_gbq(SQL, PROJECT)
