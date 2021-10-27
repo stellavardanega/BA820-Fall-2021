@@ -123,6 +123,7 @@ k3.inertia_
 #exercise
 #fit range of cluster solutions for 2 to 10, k=2, k=3...
 #save out a way to evaluate the solutions based on the inertia of the fit
+j.head()
 k_range = range(2,11)
 eval = []
 
@@ -134,3 +135,16 @@ for i in k_range:
 sns.lineplot(y=eval, x=k_range)
 plt.show()
 
+#silo score (fit and the samples) comes from the metrics module
+k5.inertia_
+
+silo_overall = metrics.silhouette_score(j, k5.predict(j))
+silo_overall
+
+#samples
+silo_samples = metrics.silhouette_samples(j, k5.predict(j))
+silo_samples.shape
+
+#plotting
+skplt.metrics.plot_silhouette(j, k5.predict(j), figsize=(7,7))
+plt.show()
