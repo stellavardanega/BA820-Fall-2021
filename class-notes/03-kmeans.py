@@ -123,7 +123,7 @@ k3.inertia_
 #exercise
 #fit range of cluster solutions for 2 to 10, k=2, k=3...
 #save out a way to evaluate the solutions based on the inertia of the fit
-j.head()
+j.drop('k5', axis=1, inplace=True)
 k_range = range(2,11)
 eval = []
 
