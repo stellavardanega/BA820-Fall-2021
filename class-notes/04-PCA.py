@@ -72,7 +72,7 @@ PROJECT = "ba820-fall21"
 judges = pd.read_gbq(SQL, PROJECT)
 
 judges.info()
-judges.set_index('judge')
+judges.set_index('judge', inplace=True)
 
 #correlation matrix
 jcor = judges.corr()
@@ -84,3 +84,22 @@ pca = PCA()
 pcs = pca.fit_transform(judges)
 type(pcs)
 pcs.shape
+
+pcs[:5, :5]
+
+#variance explanation ratio -- pc explained variance
+varexp = pca.explained_variance_ratio_
+type(varexp)
+varexp.shape
+np.sum(varexp)
+
+#plot the varince explained the PC
+plt.title("Explained Variance per PC")
+sns.lineplot(range(1, len(varexp)+1), varexp)
+plt.show()
+
+#cumulative running percentage
+plt.title("Explained Variance per PC")
+sns.lineplot(range(1, len(varexp)+1), np.cumsum(varexp))
+plt.axhline(.95)
+plt.show()
