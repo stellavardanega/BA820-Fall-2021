@@ -43,7 +43,7 @@ dia = pd.read_gbq(SQL, PROJECT)
 dia.shape
 
 #2.
-diamonds = dia.select_dtypes("number")
+diamonds = dia.select_dtypes("number") #beware that some numbers may be categorical --> wouldn't work
 
 #3.
 diamonds.describe().T
@@ -56,8 +56,31 @@ k5 = KMeans(5)
 k5_labs = k5.fit_predict(dia_scaled)
 np.unique(k5_labs)
 
-diamonds['k5'] = k5_labs
+dia['k5'] = k5_labs
 
 #4. 
-skplt.metrics.plot_silhouette(diamonds, k5.predict(diamonds), figsize=(7,7))
+skplt.metrics.plot_silhouette(dia_scaled, k5_labs, figsize=(7,7))
 plt.show()
+
+#5. 
+sns.boxplot(data=dia, x="k5", y='carat')
+plt.show()
+
+#PCA - Start of class
+SQL = "select * from `questrom.datasets.judges`"
+PROJECT = "ba820-fall21"
+judges = pd.read_gbq(SQL, PROJECT)
+
+judges.info()
+judges.set_index('judge')
+
+#correlation matrix
+jcor = judges.corr()
+sns.heatmap(jcor, cmap='Reds', center=0)
+plt.show()
+
+#fit our first PCA model
+pca = PCA()
+pcs = pca.fit_transform(judges)
+type(pcs)
+pcs.shape
