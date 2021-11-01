@@ -103,3 +103,11 @@ plt.title("Explained Variance per PC")
 sns.lineplot(range(1, len(varexp)+1), np.cumsum(varexp))
 plt.axhline(.95)
 plt.show()
+
+#explained variance - eigenvalue
+#other ways to summarize PCs
+explvar = pca.explained_variance_
+plt.title("Eigenvalue")
+sns.lineplot(range(1, len(explvar)+1), explvar)
+plt.axhline(1)
+plt.show()
