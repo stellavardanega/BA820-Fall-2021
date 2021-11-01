@@ -43,15 +43,21 @@ dia = pd.read_gbq(SQL, PROJECT)
 dia.shape
 
 #2.
-dia.head(3)
-diamonds = dia.loc[:, "depth":"z"]
-diamonds['carat'] = dia[['carat']]
-diamonds.head(3)
+diamonds = dia.select_dtypes("number")
 
 #3.
+diamonds.describe().T
 scaler = StandardScaler()
-escaled = scaler.fit_transform(diamonds)
-k5 = KMeans(5) #initialize with number of clusters
-k5.fit(diamonds) 
-labs = k5.predict(diamonds)
-labs
+scaler.fit(diamonds)
+
+dia_scaled = scaler.transform(diamonds)
+
+k5 = KMeans(5)
+k5_labs = k5.fit_predict(dia_scaled)
+np.unique(k5_labs)
+
+diamonds['k5'] = k5_labs
+
+#4. 
+skplt.metrics.plot_silhouette(diamonds, k5.predict(diamonds), figsize=(7,7))
+plt.show()
