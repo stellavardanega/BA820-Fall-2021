@@ -71,6 +71,7 @@ silo_overall
 
 skplt.metrics.plot_silhouette(forum_scaled, labs, figsize=(7,7))
 plt.show()
+forums.groupby('k4').mean()
 
 ## Compute DBSCAN
 db = DBSCAN(eps=0.5, min_samples=5).fit(forums_num)
