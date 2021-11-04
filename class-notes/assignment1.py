@@ -38,13 +38,18 @@ dendrogram(hc_ward, labels=forums_num.index, ax=ax[3])
 plt.show()
 
 dendrogram(hc_ward, labels=forums_num.index)
+plt.axhline(y = 17, color = 'r', linestyle = '--')
+plt.axhline(y = 14, color = 'b', linestyle = '--')
+plt.tick_params(bottom=False,
+                labelbottom=False)
+plt.xlabel('Values Storing Message details')
 plt.show()
 
-cluster = fcluster(hc_ward, 3, criterion='maxclust')
+cluster = fcluster(hc_ward, 4, criterion='maxclust')
 forums['cluster'] = cluster
 forums.head()
 
-forums[forums['cluster']==1]['text']
+forums[forums['cluster']==4]['text']
 
 #KMeans
 k_range = range(2,15)
@@ -58,9 +63,21 @@ for i in k_range:
     silo_score.append(metrics.silhouette_score(forums_num, k.predict(forums_num)))
 
 sns.lineplot(y=eval, x=k_range)
+plt.axvline(x = 4, color = 'r', linestyle = '--')
+plt.text(x=2.5, y=1900, s='K = 4')
+plt.axvline(x = 5, color = 'b', linestyle = '--')
+plt.text(x=5.5, y=1900, s='K = 5')
+plt.xlabel('Number of Clusters K')
+plt.ylabel('Inertia')
 plt.show()
 
 sns.lineplot(y=silo_score, x=k_range)
+plt.axvline(x = 4, color = 'r', linestyle = '--')
+plt.text(x=4.5, y=0.3, s='K = 4')
+plt.axvline(x = 3, color = 'b', linestyle = '--')
+plt.text(x=1.5, y=0.09, s='K = 3')
+plt.xlabel('Number of Clusters K')
+plt.ylabel('Overall Silhouette Score')
 plt.show()
 
 k4 = KMeans(4)
@@ -68,9 +85,17 @@ k4.fit(forums_num)
 labs = k4.predict(forums_num)
 forums['k4'] = labs
 
-silo_overall = metrics.silhouette_score(forums_num, k4.predict(forums_num))
-silo_overall
-
 skplt.metrics.plot_silhouette(forums_num, labs, figsize=(7,7))
 plt.show()
+
 forums.groupby('k4').mean()
+forums[forums['k4']==1]['text']
+
+cluster1 = forums[forums['k4']==1]['text']
+cluster2 = forums[forums['k4']==2]['text']
+cluster3 = forums[forums['k4']==3]['text']
+cluster4 = forums[forums['k4']==4]['text']
+cluster1.to_csv(r'~/Documents/GitHub/ba820-fall-2021/class-notes/cluster1.csv')
+cluster2.to_csv(r'~/Documents/GitHub/ba820-fall-2021/class-notes/cluster2.csv')
+cluster3.to_csv(r'~/Documents/GitHub/ba820-fall-2021/class-notes/cluster3.csv')
+cluster4.to_csv(r'~/Documents/GitHub/ba820-fall-2021/class-notes/cluster4.csv')
