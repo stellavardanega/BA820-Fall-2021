@@ -52,6 +52,7 @@ forums.head()
 forums[forums['cluster']==4]['text']
 
 #KMeans
+forums.drop('cluster')
 k_range = range(2,15)
 eval = []
 silo_score = []
