@@ -11,6 +11,9 @@ from scipy.cluster.hierarchy import fcluster
 from sklearn import metrics 
 from sklearn.datasets import make_blobs
 from sklearn.preprocessing import StandardScaler
+from sklearn.manifold import MDS
+from sklearn.manifold import TSNE
+from sklearn.decomposition import PCA
 
 import scikitplot as skplt
 
@@ -131,3 +134,21 @@ cluster1.to_csv(r'~/Documents/GitHub/ba820-fall-2021/class-notes/assignment1/clu
 cluster2.to_csv(r'~/Documents/GitHub/ba820-fall-2021/class-notes/assignment1/cluster2.csv')
 cluster3.to_csv(r'~/Documents/GitHub/ba820-fall-2021/class-notes/assignment1/cluster3.csv')
 cluster4.to_csv(r'~/Documents/GitHub/ba820-fall-2021/class-notes/assignment1/cluster4.csv')
+
+#TSNE
+pca_m = PCA(.9)
+pca_m.fit(forums_num)
+pcs_m = pca_m.transform(forums_num)
+
+tsne = TSNE()
+tsne.fit(pcs_m)
+
+te = tsne.embedding_
+te.shape
+
+tdata = pd.DataFrame(te, columns=['e1', 'e2'])
+tdata['k4'] = labs
+
+plt.figure(figsize=(10, 8))
+sns.scatterplot(x="e1", y="e2", hue='k4', data=tdata, legend="full")
+plt.show()
