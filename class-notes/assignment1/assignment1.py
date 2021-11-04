@@ -136,12 +136,8 @@ cluster3.to_csv(r'~/Documents/GitHub/ba820-fall-2021/class-notes/assignment1/clu
 cluster4.to_csv(r'~/Documents/GitHub/ba820-fall-2021/class-notes/assignment1/cluster4.csv')
 
 #TSNE
-pca_m = PCA(.9)
-pca_m.fit(forums_num)
-pcs_m = pca_m.transform(forums_num)
-
 tsne = TSNE()
-tsne.fit(pcs_m)
+tsne.fit(forums_num)
 
 te = tsne.embedding_
 te.shape
