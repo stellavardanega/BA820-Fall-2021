@@ -115,7 +115,7 @@ k3.fit(forums_num)
 labs_3 = k3.predict(forums_num)
 forums['k3'] = labs
 
-skplt.metrics.plot_silhouette(forums_num, labs_5, figsize=(7,7))
+skplt.metrics.plot_silhouette(forums_num, labs_3, figsize=(7,7))
 plt.title('Silhouette Score (K=3)')
 plt.show()
 
