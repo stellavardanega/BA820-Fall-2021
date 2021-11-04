@@ -14,6 +14,8 @@ from sklearn.preprocessing import StandardScaler
 
 import scikitplot as skplt
 
+import docx
+
 #Importing and preparing the dataset
 forums = pd.read_pickle("~/Documents/GitHub/BA820-Fall-2021/assignments/assignment-01/forums.pkl")
 type(forums)
@@ -118,7 +120,8 @@ plt.show()
 
 forums.drop('k3', axis=1, inplace=True)
 forums['k4'] = labs
-forums.groupby('k4').mean()
+summary_clusters = forums.groupby('k4').mean()
+summary_clusters.to_csv(r'~/Documents/GitHub/ba820-fall-2021/class-notes/assignment1/summary-clusters.csv')
 forums[forums['k4']==1]['text']
 
 cluster1 = forums[forums['k4']==1]['text']
