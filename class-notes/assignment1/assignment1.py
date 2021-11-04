@@ -14,8 +14,6 @@ from sklearn.preprocessing import StandardScaler
 
 import scikitplot as skplt
 
-import docx
-
 #Importing and preparing the dataset
 forums = pd.read_pickle("~/Documents/GitHub/BA820-Fall-2021/assignments/assignment-01/forums.pkl")
 type(forums)
