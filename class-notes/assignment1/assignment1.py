@@ -96,6 +96,7 @@ labs = k4.predict(forums_num)
 forums['k4'] = labs
 
 skplt.metrics.plot_silhouette(forums_num, labs, figsize=(7,7))
+plt.title('Silhouette Score (K=4)')
 plt.show()
 
 forums.drop('k4', axis=1, inplace=True)
@@ -105,6 +106,7 @@ labs_5 = k5.predict(forums_num)
 forums['k5'] = labs
 
 skplt.metrics.plot_silhouette(forums_num, labs_5, figsize=(7,7))
+plt.title('Silhouette Score (K=5)')
 plt.show()
 
 forums.drop('k5', axis=1, inplace=True)
@@ -114,6 +116,7 @@ labs_3 = k3.predict(forums_num)
 forums['k3'] = labs
 
 skplt.metrics.plot_silhouette(forums_num, labs_5, figsize=(7,7))
+plt.title('Silhouette Score (K=3)')
 plt.show()
 
 forums.drop('k3', axis=1, inplace=True)
