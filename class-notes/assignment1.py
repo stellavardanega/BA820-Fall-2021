@@ -40,8 +40,7 @@ plt.show()
 dendrogram(hc_ward, labels=forums_num.index)
 plt.axhline(y = 17, color = 'r', linestyle = '--')
 plt.axhline(y = 14, color = 'b', linestyle = '--')
-plt.tick_params(bottom=False,
-                labelbottom=False)
+plt.tick_params(bottom=False, labelbottom=False)
 plt.xlabel('Values Storing Message details')
 plt.show()
 
@@ -52,7 +51,7 @@ forums.head()
 forums[forums['cluster']==4]['text']
 
 #KMeans
-forums.drop('cluster')
+forums.drop('cluster', axis=1, inplace=True)
 k_range = range(2,15)
 eval = []
 silo_score = []
