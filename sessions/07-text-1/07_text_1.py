@@ -106,10 +106,16 @@ df.text.str.count("[a-zA-Z0-9]")
 ## \s for whitespace
 
 # only print out entries if the pattern matches
+FIND = df.text.str.contains('tu')
+df.text[FIND]
 
 # again, case sensitive
+FIND = df.text.str.contains('Tu')
+df.text[FIND]
 
 # we can use "OR" logic
+FIND = df.text.str.contains('tu|BA')
+df.text[FIND]
 
 # matches
 
@@ -142,29 +148,30 @@ df.text.str.count("[a-zA-Z0-9]")
 
 # lets reset the dataframe
 
-# df = pd.DataFrame({'doc':a})
-# df
-
-
-
-
+df = pd.DataFrame({'doc':a})
+df
 
 # if we really wanted to (or had to), we 
 # have the python chops to make this a doc/term matrix
 
+# split out the test using basic string operations
+df['tokens'] = df.doc.str.split()
+df.head(1)
+
 # step 0, just the tokens but keep as a dataframe
-# tdf = df[['tokens']]
+tdf = df[['tokens']]
+tdf
 
 # step 1: melt it via explode
-# tdf_long = tdf.explode("tokens")
-# tdf_long
+tdf_long = tdf.explode("tokens")
+tdf_long
 
 # step 3: back to wide for a dtm
-# tdf_long['value'] = 1
-# dtm = tdf_long.pivot_table(columns="tokens", 
-#                            values="value", 
-#                            index=tdf_long.index,
-#                            aggfunc=np.count_nonzero)
+tdf_long['value'] = 1
+dtm = tdf_long.pivot_table(columns="tokens", 
+                            values="value", 
+                            index=tdf_long.index,
+                            aggfunc=np.count_nonzero)
 
 # lets review what we have
 
@@ -172,6 +179,9 @@ df.text.str.count("[a-zA-Z0-9]")
 ##      What do you notice about our tokenized dataset
 ##      What about the values?  What would you change?
 ##
+
+dtm.fillna(0, inplace=True)
+dtm.head(3)
 
 ################ YOUR TURN
 ##  from the topics table on big query (questrom.datasets.topics), 
@@ -181,27 +191,45 @@ df.text.str.count("[a-zA-Z0-9]")
 ##  get the text into a long form where each token is a row in the dataframe
 ##
 
+SQL = "SELECT text from `questrom.datasets.topics`"
+PROJECT = "ba820-fall21"
+topics = pd.read_gbq(SQL, PROJECT)
 
+topics.text.str.lower()
 
+topics['tokens'] = topics.text.str.split()
+topics = topics[['tokens']]
+topics_long = topics.explode("tokens")
 
+topics_long['value'] = 1
+dtm = topics_long.pivot_table(columns="tokens", 
+                            values="value", 
+                            index=topics_long.index,
+                            aggfunc=np.count_nonzero)
 
-
+dtm.fillna(0, inplace=True)
 
 # just highlighting what is possible, you don't need to do this
 # keep just the numbers and letters
 # just highlighting that depending on your use cases, you can 
 # roll your own functions to clean text
 # pandas makes it easy to `apply` these to our text column!
-# def remove_punct(text):
-#   import string
-#   text = ''.join([p for p in text if p not in set(string.punctuation)])
-#   return text
+SQL = "SELECT * from `questrom.datasets.topics`"
+PROJECT = "ba820-fall21"
+topics = pd.read_gbq(SQL, PROJECT)
+topics.text.str.lower()
 
-# topics['text'] = topics.text.apply(remove_punct)
+def remove_punct(text):
+   import string
+   text = ''.join([p for p in text if p not in set(string.punctuation)])
+   return text
 
+topics['text'] = topics.text.apply(remove_punct)
 
-
-
+topics['tokens'] = topics.text.str.split()
+topics.head(1)
+topics_long = topics.explode('tokens')
+topics_long.head(3)
 
 #################################### Lets predict the category!
 ##
@@ -215,16 +243,18 @@ df.text.str.count("[a-zA-Z0-9]")
 
 # topics = pd.read_gbq("SELECT * from `questrom.datasets.topics`", "questrom")
 # topics.shape
+del topics['tokens']
 
 # what do we have
 
 # what do we have for a distro on topics?
+topics.topic.value_counts(dropna=False)
 
 # imports -- violating my rule of thumb, but lets put that aside for emphasis
 
-# from sklearn.tree import DecisionTreeClassifier
-# from sklearn.model_selection import train_test_split
-# from sklearn import metrics
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
 
 # remember, we have the topics data
 
@@ -232,55 +262,64 @@ df.text.str.count("[a-zA-Z0-9]")
 # above highlights we have full control, but there are frameworks that aim to abstract this for us
 # abstractions have their own overhead costs, but lets build on top of sklearn to soften the impact
 
-# cv = CountVectorizer()
-# cv.fit(topics.text)
+cv = CountVectorizer()
+cv.fit(topics.text)
 
 # we can easily have done fit_transform, but lets explore what was learned about our corpus
 
 # get the vocabulary and their term:numeric id map
 # this is a common representation for downstream word embedding tasks
+cv.vocabulary_
 
 # length
+len(cv.vocabulary_)
 
 ## make this a numeric matrix of document by term (dtm)
+dtm = cv.transform(topics.text)
 
 # confirm the shape is what we expect
+dtm.shape
 
 # missing data are zeros
+dtm.toarray()[:5, :5]
 
 # make this a dataframe to help with our mental model
 
-# dtm_df = pd.DataFrame(dtm.toarray(), columns=cv.get_feature_names())
-# dtm_df.columns
+dtm_df = pd.DataFrame(dtm.toarray(), columns=cv.get_feature_names())
+dtm_df.columns
 
 # lets build the datasets for the model
 
-# X = dtm_df.copy()
-# y = topics.topic
+X = dtm_df.copy()
+y = topics.topic
 
 # confirm we have the same thing
+X.shape
+y.shape
 
 # split the data
 
-# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.3, random_state=820)
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.3, random_state=820, stratify=y)
 
 # fit the model
 
-# tree = DecisionTreeClassifier(max_depth=5, min_samples_split=30, min_samples_leaf=15)
-# tree.fit(X_train, y_train)
+tree = DecisionTreeClassifier(max_depth=5, min_samples_split=30, min_samples_leaf=15)
+tree.fit(X_train, y_train)
 
 # fit metrics on test
 
-# preds = tree.predict(X_test)
-# ctable = metrics.classification_report(y_test, preds)
-# print(ctable)
+preds = tree.predict(X_test)
+ctable = metrics.classification_report(y_test, preds)
+print(ctable)
 
 # confusion matrix from skplot
 # cancan see where the model isn't sure
 
-# skplot.metrics.plot_confusion_matrix(y_test, preds, 
-#                                      figsize=(7,4), 
-#                                      x_tick_rotation=90 )
+skplot.metrics.plot_confusion_matrix(y_test, preds, 
+                                     figsize=(7,4), 
+                                     x_tick_rotation=90)
+plt.show()
 
 # accuracy score   <----- confirming the classification report
 
