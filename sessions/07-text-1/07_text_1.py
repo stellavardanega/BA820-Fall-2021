@@ -39,17 +39,17 @@ import spacy
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer,TfidfVectorizer  
 import nltk
 
-# a = ['I like turtles!',
-#      'You like hockey and golf ',
-#      'Turtles and hockey ftw',
-#      'Python is very easy to learn. 🐍',
-#      'A great resource is www.spacy.io',
-#      ' Today is the Feb 22, 2021 !           ',
-#      '@username #hashtag https://www.text.com',
-#      'BA820 ']
+a = ['I like turtles!',
+      'You like hockey and golf ',
+      'Turtles and hockey ftw',
+      'Python is very easy to learn. 🐍',
+      'A great resource is www.spacy.io',
+      ' Today is the Feb 22, 2021 !           ',
+      '@username #hashtag https://www.text.com',
+      'BA820 ']
 
-# df = pd.DataFrame({'text':a})
-# df
+df = pd.DataFrame({'text':a})
+df
 
 ## QUICK QUESTION
 ##        What do you see about the data being brought in?
@@ -61,8 +61,11 @@ import nltk
 
 # capitalize or change case
 # upper, lower, strip
+df.text.str.lower()
+df.text.str.strip()
 
 # we can detect
+df.text.str.contains("hockey")
 
 # remember python is case sensitive!
 
@@ -70,6 +73,7 @@ import nltk
 # but we will come back to patterns
 
 # we can look at the length
+df.text.str.len()
 
 #### NOTE:
 ##      but look at above, what do you notice about the lengths calculated?
@@ -77,6 +81,7 @@ import nltk
 # lets look at the values directly again for the last entry
 
 # lets count characters and numbers
+df.text.str.count("[a-zA-Z0-9]")
 
 ## regex
 ## https://www.regular-expressions.info/quickstart.html
