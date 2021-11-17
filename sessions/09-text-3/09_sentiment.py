@@ -57,10 +57,19 @@ from newspaper import Article
 ## use UMAP to reconstruct the dtm to 2 embeddings
 ## visualize the dataset via a scatterplot, and overlay the intent as a color on the plot
 ## Does UMAP help us sort the intents?
+SQL = "SELECT * FROM `questrom.datasets.airline-intents`"
+PROJECT = "ba820-fall21"
+airline = pd.read_gbq(SQL, PROJECT)
+airline = airline.loc[airline['intent'].isin(['atis_airfare', 'atis_ground_service', 'atis_airline', 'atis_abbreviation'])]
+airline.intent.nunique()
 
+tfidf = TfidfVectorizer()
+tfidf.fit(airline.text)
+dtm = tfidf.transform(airline.text)
+idf = pd.DataFrame(dtm.toarray(), columns=tfidf.get_feature_names_out())
 
-
-
+umap = UMAP(2)
+u2 = umap.fit_transform(idf)
 
 ###################################### NLTK parsing
 ###################################### Quick highlight that there are pre-built tools!
