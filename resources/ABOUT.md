@@ -100,6 +100,7 @@ Below are some resources for association rules.
 ## Distance and Clustering
 
 - [Great Overview of Euclidean and Cosine Distances - with python code!](https://cmry.github.io/notes/euclidean-v-cosine)
+- [Combining Numeric and Categorical Data Distance Matrices](https://colab.research.google.com/drive/1uQSBCD4avqgQnW2PxBqswThKrT_HG92Y?usp=sharing)
 
 ## Dimensionality Reduction
 
