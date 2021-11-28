@@ -101,6 +101,7 @@ Below are some resources for association rules.
 
 - [Great Overview of Euclidean and Cosine Distances - with python code!](https://cmry.github.io/notes/euclidean-v-cosine)
 - [Combining Numeric and Categorical Data Distance Matrices](https://colab.research.google.com/drive/1uQSBCD4avqgQnW2PxBqswThKrT_HG92Y?usp=sharing)
+- [9 Distance Measures](https://towardsdatascience.com/9-distance-measures-in-data-science-918109d069fa)
 
 ## Dimensionality Reduction
 
@@ -160,13 +161,13 @@ Below are some resources for association rules.
 - [fastText vectors - many languages](https://github.com/facebookresearch/fastText/blob/master/docs/crawl-vectors.md#models) 
 
 - [Document Vectors paper](https://cs.stanford.edu/~quocle/paragraph_vector.pdf)
-- [NER and Grade Level Post - Medium](https://towardsdatascience.com/explorations-in-named-entity-recognition-and-was-eleanor-roosevelt-right-671271117218)
+- [Keyword/Topic Extraction])https://towardsdatascience.com/keyword-extraction-methods-the-overview-35557350f8bb)
 
 ## spacy
 
 - [Advanced Rule-based Matching with spacy](https://pub.towardsai.net/rule-based-matching-for-nlp-using-spacy-491f148fd4fb)
 - [How we use Entity Extraction to improve Customer Service Calls](https://medium.com/observe-ai-engineering-blog/how-we-use-entity-extraction-to-improve-compliance-in-call-centers-e5bbca14fc03)
-- 
+- [NER and Grade Level Post - Medium](https://towardsdatascience.com/explorations-in-named-entity-recognition-and-was-eleanor-roosevelt-right-671271117218)
 
 ## Scikit Resources
 
