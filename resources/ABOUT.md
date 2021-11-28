@@ -41,10 +41,6 @@ Below are links to resources that make plotting easier for all sorts of tasks, e
 
 - [](https://realpython.com/advanced-visual-studio-code-python/)
 
-## Regex
-- [regex101](https://regex101.com/)
-- [learn regex](https://github.com/ziishaned/learn-regex)
-- [regex simple cheatsheet](https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285)
 
 ## Colab
 
