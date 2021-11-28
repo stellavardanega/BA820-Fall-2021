@@ -43,8 +43,8 @@ Below are links to resources that make plotting easier for all sorts of tasks, e
 
 ## Regex
 - [regex101](https://regex101.com/)
-- [](https://github.com/ziishaned/learn-regex)
-- [](https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285)
+- [learn regex](https://github.com/ziishaned/learn-regex)
+- [regex simple cheatsheet](https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285)
 
 ## Colab
 
