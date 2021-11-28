@@ -160,6 +160,7 @@ Below are some resources for association rules.
 - [fastText vectors - many languages](https://github.com/facebookresearch/fastText/blob/master/docs/crawl-vectors.md#models) 
 
 - [Document Vectors paper](https://cs.stanford.edu/~quocle/paragraph_vector.pdf)
+- [NER and Grade Level Post - Medium](https://towardsdatascience.com/explorations-in-named-entity-recognition-and-was-eleanor-roosevelt-right-671271117218)
 
 
 
