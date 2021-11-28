@@ -3,7 +3,7 @@ sandbox/
 
 .DS_Store
 
-apps/labelstudio/data/label_studio.sqlite3
+#apps/labelstudio/data/label_studio.sqlite3
 .Rhistory
 *.pyc
 
