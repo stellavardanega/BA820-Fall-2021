@@ -35,11 +35,13 @@ Below are links to resources that make plotting easier for all sorts of tasks, e
 | skplot | Useful plots for ML via sklearn objects | https://scikit-plot.readthedocs.io/en/stable/index.html |
 
 ## Git
--[](https://www.datacamp.com/groups/shared_links/a67bd4dff53af4d5c056cf21a69fa1ebe41130f25be0694f49a36095873f35e2)
 
-## VS Code
+- [Git tutorial](https://www.datacamp.com/groups/shared_links/a67bd4dff53af4d5c056cf21a69fa1ebe41130f25be0694f49a36095873f35e2)
 
-- [](https://realpython.com/advanced-visual-studio-code-python/)
+## VS Code / Coding
+
+- [How to easily transition from notebooks to scripting](https://medium.com/bigpanda-engineering/how-to-easily-transition-from-developing-with-jupyter-notebooks-to-python-scripts-a15530a6ca32)
+- [Advanced Visual Studio Code](https://realpython.com/advanced-visual-studio-code-python/)
 
 
 ## Colab
