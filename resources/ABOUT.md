@@ -158,10 +158,12 @@ Below are some resources for association rules.
 - [fastText vectors - many languages](https://github.com/facebookresearch/fastText/blob/master/docs/crawl-vectors.md#models) 
 
 - [Document Vectors paper](https://cs.stanford.edu/~quocle/paragraph_vector.pdf)
-- [Keyword/Topic Extraction])https://towardsdatascience.com/keyword-extraction-methods-the-overview-35557350f8bb)
+- [Keyword/Topic Extraction](https://towardsdatascience.com/keyword-extraction-methods-the-overview-35557350f8bb)
 
 ## spacy
 
+- [spacy 101](https://spacy.io/usage/spacy-101/)
+- [advanced Nlp with spacy](https://course.spacy.io/en/)
 - [Advanced Rule-based Matching with spacy](https://pub.towardsai.net/rule-based-matching-for-nlp-using-spacy-491f148fd4fb)
 - [How we use Entity Extraction to improve Customer Service Calls](https://medium.com/observe-ai-engineering-blog/how-we-use-entity-extraction-to-improve-compliance-in-call-centers-e5bbca14fc03)
 - [NER and Grade Level Post - Medium](https://towardsdatascience.com/explorations-in-named-entity-recognition-and-was-eleanor-roosevelt-right-671271117218)
