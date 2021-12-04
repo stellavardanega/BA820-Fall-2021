@@ -9,11 +9,3 @@
 
 ## Data Challenge Run Through
 - https://colab.research.google.com/drive/1EObHrV7iZZDe1BMlGjJrTnjUDdjR2EVe?usp=sharing
-
-## DIY Custom Word Vectors
-
-A - https://colab.research.google.com/drive/138I2KgpCKQgwLwe4dcybqSFlV-OdRmzB?usp=sharing
-
-B - https://colab.research.google.com/drive/1CIx84IYB3wC9mZfzrnytt443A6W4SV4Y?usp=sharing
-
-
