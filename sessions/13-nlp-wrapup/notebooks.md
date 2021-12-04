@@ -70,5 +70,9 @@ HuggingFace is the coolest kid on the block right now.  They are doing some amaz
 
 Put it all together!  We saw that sometimes our "standard" ML models do well and are fast to fit/predict, but see how well you can do applying the concepts from class to predict the customer intent!
 
+http://34.85.195.130:8501/
+
+https://colab.research.google.com/drive/1lVbEQs0qFAFG8Z8pJgjuOiOW63vZmUDL?usp=sharing
+
 
 
