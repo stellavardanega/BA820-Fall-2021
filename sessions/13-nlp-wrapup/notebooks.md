@@ -65,6 +65,10 @@ HuggingFace is the coolest kid on the block right now.  They are doing some amaz
 - [NLG](https://transformer.huggingface.co/)
 - [Course for pytorch or tensorflow](https://huggingface.co/course/chapter1/1?fw=tf)
 
+- [textrank paper](https://web.eecs.umich.edu/~mihalcea/papers/mihalcea.emnlp04.pdf)
+- [textrank for keyword extraction in python](https://derwen.ai/docs/ptr/)
+
+
 
 # 4.  Data Challenge
 
