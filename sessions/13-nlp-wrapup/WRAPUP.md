@@ -1,3 +1,8 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
 # Wrap Up - State of NLP and Misc
 
 1. Unsupervised Topic Modeling with all the lego peices we saw in class!
